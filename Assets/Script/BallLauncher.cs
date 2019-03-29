@@ -17,7 +17,8 @@ public class BallLauncher : MonoBehaviour
 
     private int ballsCount;
     private List<BallMovement> balls;
-    
+
+    private GameState gameState;
 
     private void Awake()
     {
@@ -30,6 +31,8 @@ public class BallLauncher : MonoBehaviour
         CreateBall();
         CreateBall();
         CreateBall();
+
+        gameState = GameState.none;
     }
 
     private void CreateBall()
@@ -41,30 +44,39 @@ public class BallLauncher : MonoBehaviour
 
     private void Update()
     {
-
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3.back * -10);
-
-        if (Input.GetMouseButtonDown(0))
+        switch (gameState)
         {
-            StartDrag(worldPosition);
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            
-            ContinueDragging(worldPosition);
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            
-            EndDragging();
-        }
 
+            case GameState.none:
+                {
 
+                    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3.back * -10);
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        StartDrag(worldPosition);
+                    }
+                    else if (Input.GetMouseButton(0))
+                    {
+
+                        ContinueDragging(worldPosition);
+                    }
+                    else if (Input.GetMouseButtonUp(0))
+                    {
+
+                        EndDragging();
+                    }
+
+                    break;
+                }
+        }
     }
 
     private void EndDragging()
     {
         drawLine.ResetLine();
+
+        gameState = GameState.launch;
 
         StartCoroutine(LaunchBalls());
     }
@@ -103,5 +115,17 @@ public class BallLauncher : MonoBehaviour
         ballsCount = 0;
 
     }
+
+    public void BallReturned()
+    {
+        ballsCount++;
+
+        if (ballsCount.Equals(balls.Count))
+        {
+            CreateBall();
+            gameState = GameState.none;
+        }
+    }
+
 
 }
