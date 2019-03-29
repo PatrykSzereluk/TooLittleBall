@@ -7,6 +7,7 @@ TagManager:
   - Ball
   - BallLauncher
   - BlockManager
+  - UIManager
   layers:
   - Default
   - TransparentFX

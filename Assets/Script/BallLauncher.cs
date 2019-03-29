@@ -8,9 +8,15 @@ public class BallLauncher : MonoBehaviour
 
     [SerializeField]
     private BallMovement ballPrefab;
+
     [SerializeField]
     private float delayBetweenBalls;
 
+    [SerializeField]
+    private float timeToIncreaseTimeScale = 5f;
+
+
+    private float _timeToIncreaseTimeScale;
     private Vector3 startPosition;
     private Vector3 endPosition;
     private DrawLine drawLine;
@@ -24,6 +30,7 @@ public class BallLauncher : MonoBehaviour
     {
         drawLine = GetComponent<DrawLine>();
         balls = new List<BallMovement>();
+        _timeToIncreaseTimeScale = timeToIncreaseTimeScale;
     }
 
     private void Start()
@@ -67,6 +74,16 @@ public class BallLauncher : MonoBehaviour
                         EndDragging();
                     }
 
+                    break;
+                }
+            case GameState.launch:
+                {
+                    _timeToIncreaseTimeScale -= Time.deltaTime;
+
+                    if(_timeToIncreaseTimeScale <= 0)
+                    {
+                        Time.timeScale = 2;
+                    }
                     break;
                 }
         }
@@ -123,7 +140,12 @@ public class BallLauncher : MonoBehaviour
         if (ballsCount.Equals(balls.Count))
         {
             CreateBall();
+
             gameState = GameState.none;
+            Time.timeScale = 1;
+            _timeToIncreaseTimeScale = timeToIncreaseTimeScale;
+
+            STF.blockManager.CreateRowOfBlocks();
         }
     }
 

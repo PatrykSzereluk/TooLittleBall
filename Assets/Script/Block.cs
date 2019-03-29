@@ -28,6 +28,12 @@ public class Block : MonoBehaviour
         spriteRenderer.color = Color.Lerp(Color.white, startColor, BlockHp / 10f);
     }
 
+    public void SetHp(int hp)
+    {
+        BlockHp = hp;
+        UpdateText();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ball"))

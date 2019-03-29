@@ -1,18 +1,79 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BlockManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+
+    [SerializeField]
+    private int percentChanceForBlock = 30;
+
+    [SerializeField]
+    private Block blockPrefab;
+
+    private float offset = 0.9f;
+
+    private List<Block> blocks;
+
+    private int maxBlocksInRow = 6;
+
+    private UnityEngine.Random random;
+
+    public int rowsSpawned;
+
+    private void Awake()
     {
+        blocks = new List<Block>();
+        rowsSpawned = 0;
+        SpawnRowOfBlocks();
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SpawnRowOfBlocks()
     {
-        
+
+        foreach (Block item in blocks)
+        {
+            if (item != null)
+                item.transform.position += Vector3.down * offset;
+        }
+
+        int respawnedBlocks = 0;
+
+        while (respawnedBlocks == 0)
+        {
+
+            for (int i = 0; i < maxBlocksInRow; i++)
+            {
+                if (UnityEngine.Random.Range(0, 100) > percentChanceForBlock)
+                {
+                    var block = Instantiate(blockPrefab, SetPosition(i), Quaternion.identity, transform);
+                    int blockHp = UnityEngine.Random.Range(1,3) + rowsSpawned;
+                    block.SetHp(blockHp);
+                    blocks.Add(block);
+                    respawnedBlocks++;
+                }
+            }
+        }
+
+        rowsSpawned++;
+        STF.uimanager.SetLevelText(rowsSpawned);
     }
+
+    private Vector3 SetPosition(int i)
+    {
+        Vector3 position = transform.position;
+
+        position += Vector3.right * offset * i;
+
+        return position;
+    }
+
+    public void CreateRowOfBlocks()
+    {
+        SpawnRowOfBlocks();
+    }
+
 }
