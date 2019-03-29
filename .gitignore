@@ -32,3 +32,7 @@ ExportedObj/
 Icon?
 ehthumbs.db
 Thumbs.db
+.vs/TooLittleBall/v15/Server/sqlite3/storage.ide-wal
+.vs/TooLittleBall/v15/Server/sqlite3/storage.ide-shm
+.vs/TooLittleBall/v15/Server/sqlite3/storage.ide
+.vs/TooLittleBall/v15/Server/sqlite3/db.lock
