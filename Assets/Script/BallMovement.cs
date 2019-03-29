@@ -17,6 +17,7 @@ public class BallMovement : MonoBehaviour
 
     private void Update()
     {
-        rigidbody.velocity = rigidbody.velocity.normalized * moveSpeed * Time.deltaTime;
+            
+            rigidbody.velocity = rigidbody.velocity.normalized * moveSpeed * Time.deltaTime;
     }
 }

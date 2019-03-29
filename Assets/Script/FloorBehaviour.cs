@@ -12,6 +12,8 @@ public class FloorBehaviour : MonoBehaviour
         if (collision.collider.CompareTag("Ball"))
         {
             STF.ballLauncher.BallReturned();
+            //collision.collider.gameObject.GetComponent<Collider2D>().enabled = false;
+            //collision.collider.gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
             collision.collider.gameObject.SetActive(false);
         }

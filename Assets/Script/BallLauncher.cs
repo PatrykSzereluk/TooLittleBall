@@ -18,10 +18,9 @@ public class BallLauncher : MonoBehaviour
     private DrawLine drawLine;
 
     private int ballsCount;
-    private List<BallMovement> balls;
 
-
-
+    [HideInInspector]
+    public List<BallMovement> balls;
 
     private void Awake()
     {
@@ -128,12 +127,10 @@ public class BallLauncher : MonoBehaviour
 
         if (ballsCount == balls.Count)
         {
-            STF.gameManager.ChangeTimeScale(1);
 
             CreateBall();
 
             STF.gameManager.gameState = GameState.aiming;    
-
             STF.blockManager.CreateRowOfBlocks();
         }
     }

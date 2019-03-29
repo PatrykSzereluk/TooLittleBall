@@ -313,6 +313,7 @@ MonoBehaviour:
   ballPrefab: {fileID: 328707331417648917, guid: 41b4a8f564d7b834ea54dcc164853eab,
     type: 3}
   delayBetweenBalls: 0.1
+  balls: []
 --- !u!114 &756894327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d1938cee5e00f144b9e8cb4a01e7a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToIncreaseTimeScale: 5
+  timeToIncreaseTimeScale: 10
+  timeToTurnOnGravity: 20
   gameState: 0
 --- !u!4 &972016774
 Transform:
