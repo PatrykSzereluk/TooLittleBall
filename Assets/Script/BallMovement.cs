@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed;
+    private float moveSpeed = 0;
 
     [HideInInspector]
     public new Rigidbody2D rigidbody;

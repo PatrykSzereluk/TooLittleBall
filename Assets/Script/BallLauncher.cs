@@ -7,10 +7,10 @@ public class BallLauncher : MonoBehaviour
 {
 
     [SerializeField]
-    private BallMovement ballPrefab;
+    private BallMovement ballPrefab = null;
 
     [SerializeField]
-    private float delayBetweenBalls;
+    private float delayBetweenBalls = 0;
 
     [SerializeField]
     private float timeToIncreaseTimeScale = 5f;
@@ -24,6 +24,8 @@ public class BallLauncher : MonoBehaviour
     private int ballsCount;
     private List<BallMovement> balls;
 
+    public int ilepile;
+
     private GameState gameState;
 
     private void Awake()
@@ -35,8 +37,6 @@ public class BallLauncher : MonoBehaviour
 
     private void Start()
     {
-        CreateBall();
-        CreateBall();
         CreateBall();
 
         gameState = GameState.none;
@@ -80,7 +80,7 @@ public class BallLauncher : MonoBehaviour
                 {
                     _timeToIncreaseTimeScale -= Time.deltaTime;
 
-                    if(_timeToIncreaseTimeScale <= 0)
+                    if (_timeToIncreaseTimeScale <= 0)
                     {
                         Time.timeScale = 2;
                     }
@@ -126,10 +126,12 @@ public class BallLauncher : MonoBehaviour
             ball.transform.position = transform.position;
             ball.rigidbody.AddForce(-direction);
 
+            ballsCount--;
+
             yield return new WaitForSeconds(delayBetweenBalls);
         }
 
-        ballsCount = 0;
+        
 
     }
 
@@ -137,13 +139,17 @@ public class BallLauncher : MonoBehaviour
     {
         ballsCount++;
 
-        if (ballsCount.Equals(balls.Count))
-        {
-            CreateBall();
+        ilepile = balls.Count;
 
-            gameState = GameState.none;
+
+        if (ballsCount == balls.Count)
+        {
             Time.timeScale = 1;
             _timeToIncreaseTimeScale = timeToIncreaseTimeScale;
+
+            CreateBall();
+
+            gameState = GameState.none;    
 
             STF.blockManager.CreateRowOfBlocks();
         }

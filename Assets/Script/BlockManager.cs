@@ -11,7 +11,7 @@ public class BlockManager : MonoBehaviour
     private int percentChanceForBlock = 30;
 
     [SerializeField]
-    private Block blockPrefab;
+    private Block blockPrefab = null;
 
     private float offset = 0.9f;
 

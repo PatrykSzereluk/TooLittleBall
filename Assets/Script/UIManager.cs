@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     private string prefixText = "Level ";
 
     [SerializeField]
-    private TMPro.TextMeshProUGUI text;
+    private TMPro.TextMeshProUGUI text = null;
 
 
     private void Awake()

@@ -12,7 +12,17 @@ public class FloorBehaviour : MonoBehaviour
         if (collision.collider.CompareTag("Ball"))
         {
             STF.ballLauncher.BallReturned();
+
+            // collision.collider.transform.position = new Vector3(-2, -5, 0);
+
             collision.collider.gameObject.SetActive(false);
         }
+        else if (collision.collider.CompareTag("Block"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
+
+
+    
 }
