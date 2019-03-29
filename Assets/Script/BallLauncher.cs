@@ -12,11 +12,7 @@ public class BallLauncher : MonoBehaviour
     [SerializeField]
     private float delayBetweenBalls = 0;
 
-    [SerializeField]
-    private float timeToIncreaseTimeScale = 5f;
 
-
-    private float _timeToIncreaseTimeScale;
     private Vector3 startPosition;
     private Vector3 endPosition;
     private DrawLine drawLine;
@@ -24,22 +20,21 @@ public class BallLauncher : MonoBehaviour
     private int ballsCount;
     private List<BallMovement> balls;
 
-    public int ilepile;
 
-    private GameState gameState;
+
 
     private void Awake()
     {
         drawLine = GetComponent<DrawLine>();
         balls = new List<BallMovement>();
-        _timeToIncreaseTimeScale = timeToIncreaseTimeScale;
+        
     }
 
     private void Start()
     {
         CreateBall();
 
-        gameState = GameState.none;
+        STF.gameManager.gameState = GameState.aiming;
     }
 
     private void CreateBall()
@@ -51,10 +46,10 @@ public class BallLauncher : MonoBehaviour
 
     private void Update()
     {
-        switch (gameState)
+        switch (STF.gameManager.gameState)
         {
 
-            case GameState.none:
+            case GameState.aiming:
                 {
 
                     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3.back * -10);
@@ -76,16 +71,7 @@ public class BallLauncher : MonoBehaviour
 
                     break;
                 }
-            case GameState.launch:
-                {
-                    _timeToIncreaseTimeScale -= Time.deltaTime;
 
-                    if (_timeToIncreaseTimeScale <= 0)
-                    {
-                        Time.timeScale = 2;
-                    }
-                    break;
-                }
         }
     }
 
@@ -93,7 +79,7 @@ public class BallLauncher : MonoBehaviour
     {
         drawLine.ResetLine();
 
-        gameState = GameState.launch;
+        STF.gameManager.gameState = GameState.launch;
 
         StartCoroutine(LaunchBalls());
     }
@@ -139,17 +125,14 @@ public class BallLauncher : MonoBehaviour
     {
         ballsCount++;
 
-        ilepile = balls.Count;
-
 
         if (ballsCount == balls.Count)
         {
-            Time.timeScale = 1;
-            _timeToIncreaseTimeScale = timeToIncreaseTimeScale;
+            STF.gameManager.ChangeTimeScale(1);
 
             CreateBall();
 
-            gameState = GameState.none;    
+            STF.gameManager.gameState = GameState.aiming;    
 
             STF.blockManager.CreateRowOfBlocks();
         }

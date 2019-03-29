@@ -1,5 +1,5 @@
-﻿enum GameState
+﻿public enum GameState
 {
-    none = 1,
+    aiming = 1,
     launch
 }

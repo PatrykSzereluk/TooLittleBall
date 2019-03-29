@@ -39,4 +39,15 @@ public static class STF
         }
     }
 
+    private static GameManager _gameManager;
+
+    public static GameManager gameManager
+    {
+        get
+        {
+           return _gameManager ?? (_gameManager = GameObject.FindGameObjectWithTag("GameController")
+                .GetComponent<GameManager>());
+        }
+    }
+
 }
