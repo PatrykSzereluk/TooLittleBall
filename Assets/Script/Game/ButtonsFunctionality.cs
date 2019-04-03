@@ -9,6 +9,7 @@ public class ButtonsFunctionality : MonoBehaviour
 
     public void OnExitButton()
     {
+        STF.gameManager.SetPoint();
         SceneManager.LoadScene(0);
     }
 
@@ -17,5 +18,10 @@ public class ButtonsFunctionality : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void Resume()
+    {
+        STF.gameManager.gameState = GameState.aiming;
+        STF.gameManager.pauseMenu.SetActive(false);
+    }
 
 }

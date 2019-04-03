@@ -23,20 +23,12 @@ public class BlockManager : MonoBehaviour
 
     public int rowsSpawned;
 
-    //private void Awake()
-    //{
-    //    blocks = new List<Block>();
-    //    rowsSpawned = 0;
-    //    SpawnRowOfBlocks();
-        
-    //}
-
-    private void Start()
+    private void Awake()
     {
-
         blocks = new List<Block>();
         rowsSpawned = 0;
         SpawnRowOfBlocks();
+
     }
 
     private void SpawnRowOfBlocks()
