@@ -85,15 +85,6 @@ public class BlockManager : MonoBehaviour
         STF.uimanager.SetLevelText(rowsSpawned);
     }
 
-    //private void SlideDownObjectsOnScene(List<MonoBehaviour> objectTab)
-    //{
-    //    foreach (var item in objectTab)
-    //    {
-    //        if (item != null)
-    //            item.transform.position += Vector3.down * offset;
-    //    }
-    //}
-
     private Vector3 SetPosition(int i)
     {
         Vector3 position = transform.position;
