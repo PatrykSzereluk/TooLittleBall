@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DrawLine : MonoBehaviour
 {
-    //[SerializeField]
-    //private float maxLengthOfLine = 1f;
+    [SerializeField]
+    private float maxLengthOfLine = 1f;
 
     private LineRenderer lineRenderer;
     private Vector3 dragStartPoint;

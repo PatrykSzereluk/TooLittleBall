@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(DrawLine))]
 public class BallLauncher : MonoBehaviour
 {
 
@@ -22,17 +24,19 @@ public class BallLauncher : MonoBehaviour
     [HideInInspector]
     public List<BallMovement> balls;
 
+    [Header("BugSeciurity")]
+    [SerializeField]
+    private bool isClickLeftButton = false;
+
     private void Awake()
     {
         drawLine = GetComponent<DrawLine>();
         balls = new List<BallMovement>();
-        
     }
 
     private void Start()
     {
         CreateBall();
-
     }
 
     private void CreateBall()
@@ -55,13 +59,14 @@ public class BallLauncher : MonoBehaviour
                     if (Input.GetMouseButtonDown(0))
                     {
                         StartDrag(worldPosition);
+                        isClickLeftButton = true;
                     }
-                    else if (Input.GetMouseButton(0))
+                    else if (Input.GetMouseButton(0) && isClickLeftButton)
                     {
 
                         ContinueDragging(worldPosition);
                     }
-                    else if (Input.GetMouseButtonUp(0))
+                    else if (Input.GetMouseButtonUp(0) && isClickLeftButton)
                     {
 
                         EndDragging();
@@ -78,6 +83,8 @@ public class BallLauncher : MonoBehaviour
         drawLine.ResetLine();
 
         STF.gameManager.gameState = GameState.launch;
+
+        isClickLeftButton = false;
 
         StartCoroutine(LaunchBalls());
     }
