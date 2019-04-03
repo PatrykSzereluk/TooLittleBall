@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -91,12 +92,29 @@ public class GameManager : MonoBehaviour
             case GameState.gameover:
                 {
                     STF.blockManager.SetAlphaChanelToBlocks(0.3f);
-                    PlayerPrefs.SetString("HS",STF.uimanager.text.text);
+                    SetPoint();
                     gameOverMenu.SetActive(true);
                     break;
                 }
         }
     }
 
+    private void SetPoint()
+    {
 
+        if (PlayerPrefs.HasKey("HS"))
+        {
+            int currentHS = PlayerPrefs.GetInt("HS");
+
+            if(currentHS < STF.blockManager.rowsSpawned)
+            {
+                PlayerPrefs.SetInt("HS", STF.blockManager.rowsSpawned);
+            }
+
+        }
+        else
+        {
+            PlayerPrefs.SetInt("HS", STF.blockManager.rowsSpawned);
+        }
+    }
 }

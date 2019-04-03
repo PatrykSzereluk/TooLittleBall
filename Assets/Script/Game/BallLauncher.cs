@@ -48,7 +48,6 @@ public class BallLauncher : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3.back * -10));
 
         switch (STF.gameManager.gameState)
         {

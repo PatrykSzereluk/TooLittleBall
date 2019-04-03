@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("HS"))
         {
-            scoreText.text = PlayerPrefs.GetString("HS");
+            scoreText.text = PlayerPrefs.GetInt("HS").ToString();
         }
         else
         {
