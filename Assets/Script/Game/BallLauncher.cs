@@ -48,6 +48,8 @@ public class BallLauncher : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3.back * -10));
+
         switch (STF.gameManager.gameState)
         {
 
@@ -63,7 +65,7 @@ public class BallLauncher : MonoBehaviour
                     }
                     else if (Input.GetMouseButton(0) && isClickLeftButton)
                     {
-
+                        
                         ContinueDragging(worldPosition);
                     }
                     else if (Input.GetMouseButtonUp(0) && isClickLeftButton)
@@ -82,11 +84,14 @@ public class BallLauncher : MonoBehaviour
     {
         drawLine.ResetLine();
 
-        STF.gameManager.gameState = GameState.launch;
+        if (startPosition != endPosition)
+        { 
+            STF.gameManager.gameState = GameState.launch;
 
-        isClickLeftButton = false;
+            isClickLeftButton = false;
 
-        StartCoroutine(LaunchBalls());
+            StartCoroutine(LaunchBalls());
+        }
     }
 
     private void ContinueDragging(Vector3 worldPosition)
