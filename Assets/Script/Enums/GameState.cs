@@ -1,7 +1,9 @@
 ﻿public enum GameState
 {
     aiming = 1,
-    launch
+    launch,
+    pause,
+    gameover
 }
 
 public enum BallsMovment

@@ -14,11 +14,17 @@ public class GameManager : MonoBehaviour
 
     public GameState gameState;
 
+    public GameObject gameOverMenu;
+
     private void Awake()
     {
         _timeToIncreaseTimeScale = timeToIncreaseTimeScale;
         _timeToTurnOnGravity = timeToTurnOnGravity;
+        gameState = GameState.aiming;
     }
+
+
+
 
     public void ChangeTimeScale(int timeScale)
     {
@@ -69,6 +75,11 @@ public class GameManager : MonoBehaviour
                     ChangeTimeScale(1);
                     ChangeGravity(0);
 
+                    break;
+                }
+            case GameState.gameover:
+                {
+                    gameOverMenu.SetActive(true);
                     break;
                 }
         }
