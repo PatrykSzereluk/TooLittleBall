@@ -8,6 +8,8 @@ using UnityEngine;
 public class BallLauncher : MonoBehaviour
 {
 
+    public int ballsToAddInNextRound = 0;
+
     [SerializeField]
     private BallMovement ballPrefab = null;
 
@@ -27,6 +29,8 @@ public class BallLauncher : MonoBehaviour
     [Header("BugSeciurity")]
     [SerializeField]
     private bool isClickLeftButton = false;
+
+
 
     private void Awake()
     {
@@ -64,7 +68,7 @@ public class BallLauncher : MonoBehaviour
                     }
                     else if (Input.GetMouseButton(0) && isClickLeftButton)
                     {
-                        
+
                         ContinueDragging(worldPosition);
                     }
                     else if (Input.GetMouseButtonUp(0) && isClickLeftButton)
@@ -81,7 +85,7 @@ public class BallLauncher : MonoBehaviour
 
     private void EndDragging()
     {
-        
+
 
         if (startPosition != endPosition)
         {
@@ -112,12 +116,12 @@ public class BallLauncher : MonoBehaviour
         drawLine.SetStartPoint(transform.position);
     }
 
-    private  IEnumerator LaunchBalls()
+    private IEnumerator LaunchBalls()
     {
         Vector3 direction = endPosition - startPosition;
         direction.Normalize();
-       
-        foreach(var ball in balls)
+
+        foreach (var ball in balls)
         {
             ball.gameObject.SetActive(true);
             ball.transform.position = transform.position;
@@ -128,23 +132,31 @@ public class BallLauncher : MonoBehaviour
             yield return new WaitForSeconds(delayBetweenBalls);
         }
 
-        
+
 
     }
 
     public void BallReturned()
     {
         ballsCount++;
-        
+
         if (ballsCount == balls.Count)
         {
 
             CreateBall();
 
-            STF.gameManager.gameState = GameState.aiming;    
+            STF.gameManager.gameState = GameState.aiming;
             STF.blockManager.CreateRowOfBlocks();
         }
     }
 
+    public void AddBalls()
+    {
+        for (int i = 0; i < ballsToAddInNextRound; i++)
+        {
+            CreateBall();
+        }
+        ballsToAddInNextRound = 0;
+    }
 
 }

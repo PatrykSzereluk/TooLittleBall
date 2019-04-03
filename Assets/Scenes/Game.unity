@@ -726,6 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb569c09e0c148c4995a5bea13282f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballsToAddInNextRound: 0
   ballPrefab: {fileID: 328707331417648917, guid: 41b4a8f564d7b834ea54dcc164853eab,
     type: 3}
   delayBetweenBalls: 0.1
@@ -1562,8 +1563,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percentChanceForBlock: 30
+  percentChanceForBonusBall: 10
   blockPrefab: {fileID: 7733218568817049799, guid: a46af3d3682124d4d88fc72fafa90801,
     type: 3}
+  bonusBall: {fileID: 1644382891, guid: 2a7ed6ee8987c8743a7830129ca77abf, type: 3}
   rowsSpawned: 0
 --- !u!4 &1599571138
 Transform:

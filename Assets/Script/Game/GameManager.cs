@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
                         ChangeTimeScale(1);
                         ChangeGravity(0);
 
+                        STF.ballLauncher.AddBalls();
+
                         firstTime = false;
                     }
 

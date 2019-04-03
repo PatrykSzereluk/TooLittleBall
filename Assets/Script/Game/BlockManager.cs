@@ -11,11 +11,19 @@ public class BlockManager : MonoBehaviour
     private int percentChanceForBlock = 30;
 
     [SerializeField]
+    private int percentChanceForBonusBall = 8;
+
+    [SerializeField]
     private Block blockPrefab = null;
+
+    [SerializeField]
+    private BonusBall bonusBall;
 
     private float offset = 0.9f;
 
     private List<Block> blocks;
+
+    private List<BonusBall> bonusBalls;
 
     private int maxBlocksInRow = 6;
 
@@ -26,6 +34,7 @@ public class BlockManager : MonoBehaviour
     private void Awake()
     {
         blocks = new List<Block>();
+        bonusBalls = new List<BonusBall>();
         rowsSpawned = 0;
         SpawnRowOfBlocks();
 
@@ -33,12 +42,18 @@ public class BlockManager : MonoBehaviour
 
     private void SpawnRowOfBlocks()
     {
-
-        foreach (Block item in blocks)
+        foreach (var item in blocks)
         {
             if (item != null)
                 item.transform.position += Vector3.down * offset;
         }
+
+        foreach (var item in bonusBalls)
+        {
+            if (item != null)
+                item.transform.position += Vector3.down * offset;
+        }
+
 
         int respawnedBlocks = 0;
 
@@ -50,10 +65,18 @@ public class BlockManager : MonoBehaviour
                 if (UnityEngine.Random.Range(0, 100) > percentChanceForBlock)
                 {
                     var block = Instantiate(blockPrefab, SetPosition(i), Quaternion.identity, transform);
-                    int blockHp = UnityEngine.Random.Range(1,3) + rowsSpawned;
+                    int blockHp = UnityEngine.Random.Range(1, 3) + rowsSpawned;
                     block.SetHp(blockHp);
                     blocks.Add(block);
                     respawnedBlocks++;
+                }
+                else
+                {
+                    if (UnityEngine.Random.Range(0, 100) < percentChanceForBonusBall)
+                    {
+                        var tmp = Instantiate(bonusBall, SetPosition(i), Quaternion.identity);
+                        bonusBalls.Add(tmp);
+                    }
                 }
             }
         }
@@ -61,6 +84,15 @@ public class BlockManager : MonoBehaviour
         rowsSpawned++;
         STF.uimanager.SetLevelText(rowsSpawned);
     }
+
+    //private void SlideDownObjectsOnScene(List<MonoBehaviour> objectTab)
+    //{
+    //    foreach (var item in objectTab)
+    //    {
+    //        if (item != null)
+    //            item.transform.position += Vector3.down * offset;
+    //    }
+    //}
 
     private Vector3 SetPosition(int i)
     {
