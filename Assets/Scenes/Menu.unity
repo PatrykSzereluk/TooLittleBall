@@ -681,6 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1547490916}
   - component: {fileID: 1547490917}
+  - component: {fileID: 1547490918}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -722,6 +723,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1547490918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547490915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d003aa33a532e84195badc32a894e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1610686511
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,8 +814,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1785606127}
-        m_MethodName: load
+      - m_Target: {fileID: 1547490918}
+        m_MethodName: OnExitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -930,8 +943,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1785606127}
-        m_MethodName: load
+      - m_Target: {fileID: 1547490918}
+        m_MethodName: OnHighScoreButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -992,7 +1005,6 @@ GameObject:
   - component: {fileID: 1785606130}
   - component: {fileID: 1785606129}
   - component: {fileID: 1785606128}
-  - component: {fileID: 1785606127}
   - component: {fileID: 1785606132}
   m_Layer: 5
   m_Name: Canvas
@@ -1001,18 +1013,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1785606127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785606126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ae7ea5eaee5a94f9b7a64304724112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1785606128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1192,8 +1192,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1785606127}
-        m_MethodName: load
+      - m_Target: {fileID: 1547490918}
+        m_MethodName: OnLoadButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

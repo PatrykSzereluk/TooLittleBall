@@ -19,7 +19,7 @@ public class FloorBehaviour : MonoBehaviour
         {
             STF.gameManager.gameState = GameState.gameover;
 
-            Debug.Log("Klocek dotyka enter ");
+            STF.gameManager.gameOverMenu.SetActive(true);
         }
     }
 

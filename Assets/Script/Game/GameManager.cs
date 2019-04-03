@@ -16,8 +16,19 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverMenu;
 
+
+    [Header("Test")]
+    public BallLauncher balllauncher;
+    public BlockManager blockmanager;
+    public UIManager uimanager;
+
     private void Awake()
     {
+        STF.NullReferences();
+        balllauncher = STF.ballLauncher;
+        blockmanager = STF.blockManager;
+        uimanager = STF.uimanager;
+
         _timeToIncreaseTimeScale = timeToIncreaseTimeScale;
         _timeToTurnOnGravity = timeToTurnOnGravity;
         gameState = GameState.aiming;

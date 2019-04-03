@@ -601,6 +601,9 @@ MonoBehaviour:
   timeToTurnOnGravity: 20
   gameState: 0
   gameOverMenu: {fileID: 1889562405}
+  balllauncher: {fileID: 0}
+  blockmanager: {fileID: 0}
+  uimanager: {fileID: 0}
 --- !u!4 &972016774
 Transform:
   m_ObjectHideFlags: 0

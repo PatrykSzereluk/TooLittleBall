@@ -9,12 +9,13 @@ public class ButtonsFunctionality : MonoBehaviour
 
     public void OnExitButton()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 
     public void OnRetryButton()
     {
         SceneManager.LoadScene(1);
     }
+
 
 }

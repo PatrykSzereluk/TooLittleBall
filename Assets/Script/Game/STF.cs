@@ -50,4 +50,12 @@ public static class STF
         }
     }
 
+    public static void NullReferences()
+    {
+        _gameManager = null;
+        _uimanager = null;
+        _blockManager = null;
+        _ballLauncher = null;
+    }
+
 }

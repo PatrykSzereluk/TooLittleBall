@@ -33,7 +33,6 @@ public class BallLauncher : MonoBehaviour
     {
         CreateBall();
 
-       // STF.gameManager.gameState = GameState.aiming;
     }
 
     private void CreateBall()
@@ -123,8 +122,7 @@ public class BallLauncher : MonoBehaviour
     public void BallReturned()
     {
         ballsCount++;
-        Debug.Log("jestem");
-
+        
         if (ballsCount == balls.Count)
         {
 
