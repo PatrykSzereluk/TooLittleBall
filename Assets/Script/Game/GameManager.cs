@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
                 }
             case GameState.gameover:
                 {
+                    STF.blockManager.SetAlphaChanelToBlocks(0.3f);
+                    PlayerPrefs.SetString("HS",STF.uimanager.text.text);
                     gameOverMenu.SetActive(true);
                     break;
                 }

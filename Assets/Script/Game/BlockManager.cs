@@ -84,4 +84,17 @@ public class BlockManager : MonoBehaviour
         SpawnRowOfBlocks();
     }
 
+    public void SetAlphaChanelToBlocks(float value)
+    {
+        foreach (Block item in blocks)
+        {
+            if (item != null)
+            {
+                var color = item.GetComponentInParent<Renderer>().material.color;
+
+                color.a = value;
+            }
+        }
+    }
+
 }

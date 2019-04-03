@@ -82,10 +82,12 @@ public class BallLauncher : MonoBehaviour
 
     private void EndDragging()
     {
-        drawLine.ResetLine();
+        
 
         if (startPosition != endPosition)
-        { 
+        {
+            drawLine.ResetLine();
+
             STF.gameManager.gameState = GameState.launch;
 
             isClickLeftButton = false;
